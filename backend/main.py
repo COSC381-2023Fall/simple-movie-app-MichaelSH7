@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from typing import Union
 from movies import Movies
 from movies import Movie
+from movies import new_movie
 
 moviesApp = FastAPI()
 
@@ -49,6 +50,22 @@ def delete_movie(movie_id: int) -> Union[Movie, None]:
     else:
         return None
 
-#post
-#@moviesApp.post("/movies/{movie_id}")
- #   def post_movie(movie_id: int, new_movie: Movie)-> Union[Movie, None]:
+# post
+@moviesApp.post("/movies")
+def post_movie(added_movie: new_movie) -> Union[Movie, None]:
+    newid = len(movies._movies) + 1
+    the_new_movie = Movie(
+        id=newid,
+        name=added_movie.movie_name,
+        cast=added_movie.movie_cast
+    )
+    movies._movies.append({
+        'id': the_new_movie.id,
+        'name': the_new_movie.name,
+        'cast': the_new_movie.cast
+    })
+    return {
+        'id': the_new_movie.id,
+        'name': the_new_movie.name,
+        'cast': the_new_movie.cast
+    }

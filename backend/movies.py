@@ -2,10 +2,10 @@ from pydantic import BaseModel
 from typing import Any
 from typing import List, Set
 
-class new_movie:
+class new_movie(BaseModel):
     movie_name: str
     movie_cast: set[str]
-    
+
 class Movie(BaseModel):
     id: int
     name: str
