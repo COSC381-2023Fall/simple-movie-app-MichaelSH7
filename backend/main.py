@@ -6,6 +6,17 @@ from movies import new_movie
 
 moviesApp = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+origins = [
+    "http://localhost:3000",
+]
+moviesApp.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 movies = Movies('./movies.txt') 
 # get
 @moviesApp.get("/movies/{movie_id}")
