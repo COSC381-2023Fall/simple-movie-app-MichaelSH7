@@ -37,7 +37,16 @@ function App() {
         <TextField  id="outlined-basic" label ="MovieId" 
           variant ="outlined" color ="warning" focuse value={movieId}
           onChange={e=> setMovieId(e.target.value)}
-          />  
+          /> 
+          <List>
+            { movie &&
+            <ListItem>
+                <ListItemIcon> 
+                  <LocalMoivesIcon />
+                </ListItemIcon>
+                <ListItemText primary = {movie['name']}/>
+              </ListItem>}
+          </List>
       </header>
     </div>
   );
